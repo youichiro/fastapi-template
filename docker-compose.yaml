@@ -7,7 +7,7 @@ services:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_USER: cale
       MYSQL_PASSWORD: p@assword
-      MYSQL_DATABASE: cale
+      MYSQL_DATABASE: cale_development
     volumes:
       - db_data:/var/lib/mysql
     ports:
