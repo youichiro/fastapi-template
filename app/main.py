@@ -17,7 +17,10 @@ def get_db():
         db.close()
 
 
-@app.post("/v1/accounts", status_code=201)
+@app.post("/v1/accounts", status_code=201, responses={
+    404: {"description": "Not found admin_account"},
+    400: {"description": "Account already exists."},
+})
 def create_accounts(accounts: list[schemas.AccountCreate], db: Session = Depends(get_db)) -> str:
     crud.create_accounts(db=db, accounts=accounts)
     return "created"
