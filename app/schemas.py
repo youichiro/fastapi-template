@@ -23,6 +23,15 @@ class AccountBase(BaseModel):
 class AccountCreate(AccountBase):
     pass
 
+    class Config:
+        schema_extra = {
+            "example": {
+                "admin_account_id": 1,
+                "external_user_id": "example_external_user_id",
+                "school_id": 1,
+            }
+        }
+
 
 class Account(AccountBase):
     id: int
@@ -32,4 +41,3 @@ class Account(AccountBase):
 
     class Config:
         orm_mode = True
-
