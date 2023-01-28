@@ -21,6 +21,7 @@ def get_db():
     404: {"description": "Not found admin_account"},
     400: {"description": "Account already exists."},
 })
-def create_accounts(accounts: list[schemas.AccountCreate], db: Session = Depends(get_db)) -> str:
-    crud.create_accounts(db=db, accounts=accounts)
+def create_accounts(body: schemas.AccountCreateInput, db: Session = Depends(get_db)) -> str:
+    """アカウント一括登録API"""
+    crud.create_accounts(db=db, body=body)
     return "created"

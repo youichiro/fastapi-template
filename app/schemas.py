@@ -15,26 +15,35 @@ class AdminAccount(BaseModel):
 
 
 class AccountBase(BaseModel):
-    admin_account_id: int
     external_user_id: str
     school_id: int
 
 
-class AccountCreate(AccountBase):
-    pass
+class AccountCreateInput(BaseModel):
+    admin_secret: str
+    accounts: list[AccountBase]
 
     class Config:
         schema_extra = {
             "example": {
-                "admin_account_id": 1,
-                "external_user_id": "example_external_user_id",
-                "school_id": 1,
+                "admin_secret": "demo_secret",
+                "accounts": [
+                    {
+                        "external_user_id": "example_external_user_1",
+                        "school_id": 1,
+                    },
+                    {
+                        "external_user_id": "example_external_user_2",
+                        "school_id": 2,
+                    },
+                ]
             }
         }
 
 
 class Account(AccountBase):
     id: int
+    admin_account_id: int
     admin_account: AdminAccount
     created_at: datetime
     updated_at: datetime
