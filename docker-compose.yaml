@@ -6,7 +6,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_USER: cale
-      MYSQL_PASSWORD: p@assword
+      MYSQL_PASSWORD: password
       MYSQL_DATABASE: cale_development
     volumes:
       - db_data:/var/lib/mysql
