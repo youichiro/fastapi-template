@@ -1,14 +1,14 @@
-## versions
+## Versions
 - python: 3.11.1
 - fastapi: 0.89.1
 - mysql: 8.0.32
 
-## setup db
+## Setup DB
 ```sh
 docker compose up -d db
 ```
 
-## setup fastapi
+## Setup FastAPI
 ### on local
 ```sh
 pip install -r requirements.txt
@@ -19,6 +19,10 @@ uvicorn app.main:app --reload
 ### on docker-compose
 wip
 
-## todos
+## TODOs
 - fastapiのdocker-compose
 - テスト
+- admin_accountsの認証dependencies
+
+## Non-TODOs
+- アカウントトークン
