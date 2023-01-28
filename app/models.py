@@ -14,7 +14,7 @@ class AdminAccount(Base):
     created_at = Column(DateTime, nullable=False, server_default=text("CURRENT_TIMESTAMP"))
     updated_at = Column(DateTime, nullable=False, server_default=text("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"))
 
-    accounts = relationship("Account", back_populates="admin_accounts")
+    accounts = relationship("Account", back_populates="admin_account")
 
 
 class Account(Base):
