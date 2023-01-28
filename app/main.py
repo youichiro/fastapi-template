@@ -20,6 +20,7 @@ def get_db():
 
 @app.post("/v1/accounts", status_code=201, responses={
     404: {"description": "Not found admin_account"},
+    429: {"description": "Too many account length"},
     400: {"description": "Account already exists."},
 })
 def create_accounts(body: schemas.AccountCreateInput, db: Session = Depends(get_db)) -> str:

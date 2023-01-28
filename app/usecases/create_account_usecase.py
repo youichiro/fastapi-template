@@ -4,6 +4,8 @@ from sqlalchemy.orm import Session
 from .. import models, schemas
 
 
+MAX_ACCOUNT_NUM = 500
+
 def exec(db: Session, body: schemas.AccountCreateInput) -> None:
     db_admin_account = db.query(models.AdminAccount).filter(
         models.AdminAccount.admin_secret == body.admin_secret
@@ -13,6 +15,12 @@ def exec(db: Session, body: schemas.AccountCreateInput) -> None:
         raise HTTPException(
             status_code=404,
             detail=f"Not found admin_account secret: {body.admin_secret}."
+        )
+
+    if len(body.accounts) > MAX_ACCOUNT_NUM:
+        raise HTTPException(
+            status_code=429,
+            detail=f"Too many account length: {len(body.accounts)}"
         )
 
     for account in body.accounts:
