@@ -20,6 +20,13 @@ uvicorn app.main:app --reload
 wip
 
 ## TODOs
+- テスト用DB
+  - session scopeでget_dbをoverrideする
+  - テスト用DB作る
+  - commitをmockしてinsertしないようにする
+  - refs
+    - https://fastapi.tiangolo.com/advanced/testing-database/
+    - https://www.rhoboro.com/2021/02/27/fastapi-sqlalchemy-dbtest.html
 - fastapiのdocker-compose
 - テスト
 - CI
