@@ -17,11 +17,12 @@ def get_db():
         db.close()
 
 
-@app.get("/v1/admin_accounts", response_model=list[schemas.AdminAccount])
-def get_admin_accounts(db: Session = Depends(get_db)):
+@app.get("/v1/admin_accounts")
+def get_admin_accounts(db: Session = Depends(get_db)) -> list[schemas.AdminAccount]:
     return crud.get_admin_accounts(db)
 
 
-@app.post("/v1/accounts", response_model=schemas.Account)
-def create_account(account: schemas.AccountCreate, db: Session = Depends(get_db)):
-    return crud.create_account(db=db, account=account)
+@app.post("/v1/accounts", status_code=201)
+def create_accounts(accounts: list[schemas.AccountCreate], db: Session = Depends(get_db)) -> str:
+    crud.create_accounts(db=db, accounts=accounts)
+    return "created"
