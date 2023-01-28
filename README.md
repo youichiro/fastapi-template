@@ -22,7 +22,9 @@ wip
 ## TODOs
 - fastapiのdocker-compose
 - テスト
-- admin_accountsの認証dependencies
 
 ## Non-TODOs
 - アカウントトークン
+  - いらない
+- admin_accountsの認証dependencies
+  - いらない
