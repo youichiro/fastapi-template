@@ -22,9 +22,11 @@ wip
 ## TODOs
 - fastapiのdocker-compose
 - テスト
+- CI
 
-## Non-TODOs
+## Memo
 - アカウントトークン
   - いらない
 - admin_accountsの認証dependencies
   - いらない
+- admin accountは手動で作る
