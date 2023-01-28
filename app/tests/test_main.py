@@ -1,11 +1,11 @@
 from fastapi.testclient import TestClient
 
-from .main import app
+from ..main import app
 
 client = TestClient(app)
 
 
-def test_create_accounts():
+def test_create_accounts(test_db):
     response = client.post(
         "/v1/accounts",
         json={
