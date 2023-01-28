@@ -17,7 +17,7 @@ def get_db():
         db.close()
 
 
-@app.get("/v1/admin_accounts", response_model=list[schemas.AdminAccount]):
+@app.get("/v1/admin_accounts", response_model=list[schemas.AdminAccount])
 def get_admin_accounts(db: Session = Depends(get_db)):
     admin_accounts = crud.get_admin_accounts(db)
     return admin_accounts
@@ -27,8 +27,8 @@ def get_admin_accounts(db: Session = Depends(get_db)):
 def create_account(account: schemas.AccountCreate, db: Session = Depends(get_db)):
     account = crud.get_account(db, account.admin_account_id, account.external_user_id)
     if account:
-        HTTPException(s
-            tatus_code=400,
+        HTTPException(
+            status_code=400,
             detail=f"Account admin_account_id: {account.admin_account_id}, external_user_id: {account.external_user_id} already exists."
         )
     return crud.create_account(db=db, account=account)
