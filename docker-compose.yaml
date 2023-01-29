@@ -1,6 +1,25 @@
 version: '3'
 
 services:
+  app:
+    build:
+      context: ./
+      dockerfile: app/Dockerfile
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_HOST: db
+      MYSQL_PORT: ${MYSQL_PORT}
+      MYSQL_TEST_DATABASE: ${MYSQL_TEST_DATABASE}
+    volumes:
+      - ./app:/opt/new_cale/app/
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
   db:
     image: mysql:8.0.32
     environment:
@@ -8,6 +27,7 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
+    command: --default-authentication-plugin=mysql_native_password
     volumes:
       - ./db/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
       - db-data:/var/lib/mysql
