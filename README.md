@@ -20,8 +20,14 @@ make setup_test_db
 ## Setup FastAPI
 ### on local
 ```sh
-pip install -r requirements.txt
-uvicorn app.main:app --reload
+# install poetry
+curl -sSL https://install.python-poetry.org | python3 - --version 1.3.2
+
+# install dependencies
+poetry install
+
+# run fastapi server
+poetry run uvicorn app.main:app --reload
 ```
 
 ### on docker-compose
@@ -29,24 +35,20 @@ wip
 
 ## Test
 ```sh
-pytest # or make pytest
+poetry run pytest # or make pytest
 ```
 
-## Dependency management using poetry
+## Dependency management
 ```sh
-# install poetry
-curl -sSL https://install.python-poetry.org | python3 - --version 1.3.2
-
 # add to main group
 porty add xxx
 
 # add to test group
-porty add xxx --group test
+porty add --group test xxx
 ```
 
 ## TODOs
 - fastapiのdocker-compose
-- poetry
 - CI
 
 

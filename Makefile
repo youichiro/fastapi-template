@@ -3,4 +3,4 @@ setup_test_db:
 	sh db/test/insert_seeds.sh
 
 test:
-	pytest --cov --cov-report term-missing -n 2
+	poetry run pytest --cov --cov-report term-missing -n 2
