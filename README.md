@@ -1,3 +1,4 @@
+# New CALE
 ## Versions
 - python: 3.11.1
 - fastapi: 0.89.1
@@ -14,6 +15,7 @@ Inspired by https://blog.p1ass.com/posts/direnv-dotenv/
 ## Setup DB
 ```sh
 docker compose up -d db
+make setup_development_db
 make setup_test_db
 ```
 
@@ -45,6 +47,21 @@ porty add xxx
 
 # add to test group
 porty add --group test xxx
+```
+
+## Migration
+```sh
+# go to alembic.ini directory
+cd db
+
+# generate a new version refer to model definitions
+poetry run alembic revision --autogenerate -m "version comment"
+
+# migrate
+poetry run alembic upgrade head
+
+# show history
+poetry run alembic history
 ```
 
 ## TODOs
