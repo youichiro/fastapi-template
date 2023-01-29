@@ -29,15 +29,23 @@ curl -sSL https://install.python-poetry.org | python3 - --version 1.3.2
 poetry install --no-root
 
 # run fastapi server
-poetry run uvicorn app.main:app --reload
+poetry run uvicorn app.main:app --reload # open http://localhost:8000/docs
+```
+
+```sh
+# run tests
+poetry run pytest # or make pytest
 ```
 
 ### on docker-compose
-wip
-
-## Test
 ```sh
-poetry run pytest # or make pytest
+docker compose build app
+docker compose up -d app # open http://localhost:8000/docs
+```
+
+```sh
+# run tests
+TODO
 ```
 
 ## Dependency management
@@ -65,8 +73,12 @@ poetry run alembic history
 ```
 
 ## TODOs
-- fastapiのdocker-compose
+- .dockerignore
+- ASGI
+- nginx
 - CI
+- healthcheck
+- db password escape
 
 
 ## Memo
