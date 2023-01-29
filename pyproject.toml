@@ -8,6 +8,11 @@ packages = [{include = "new_cale"}]
 
 [tool.poetry.dependencies]
 python = "3.11.1"
+fastapi = "^0.89.1"
+uvicorn = {extras = ["standard"], version = "^0.20.0"}
+sqlalchemy = "^2.0.0"
+mysqlclient = "^2.1.1"
+alembic = "^1.9.2"
 
 
 [build-system]
