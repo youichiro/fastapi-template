@@ -1,7 +1,7 @@
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
 
-from .. import models, schemas
+from app import models, schemas
 
 
 MAX_ACCOUNT_NUM = 500
