@@ -1,3 +1,7 @@
-mysqldump -h 0.0.0.0 -u root -ppassword cale_development --no-create-db --no-data > dump.sql
-mysql -h 0.0.0.0 -P 3306 -u root -ppassword cale_test < dump.sql
+#!/usr/bin/env bash
+
+set -ue
+
+mysqldump -h $MYSQL_HOST -P $MYSQL_PORT -u root -p$MYSQL_ROOT_PASSWORD $MYSQL_DATABASE --no-create-db --no-data > dump.sql
+mysql -h $MYSQL_HOST -P $MYSQL_PORT -u root -p$MYSQL_ROOT_PASSWORD $MYSQL_TEST_DATABASE < dump.sql
 rm dump.sql

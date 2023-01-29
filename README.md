@@ -9,6 +9,8 @@ brew install direnv
 direnv allow . # load .envrc, then load .env
 ```
 
+Inspired by https://blog.p1ass.com/posts/direnv-dotenv/
+
 ## Setup DB
 ```sh
 docker compose up -d db
