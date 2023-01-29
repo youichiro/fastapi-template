@@ -24,5 +24,5 @@ def get_db():
 })
 def create_accounts(body: schemas.AccountCreateInput, db: Session = Depends(get_db)) -> str:
     """アカウント一括登録API"""
-    usecases.create_account_usecases.exec(db, body)
+    usecases.create_accounts_usecase.exec(db, body)
     return "created"
