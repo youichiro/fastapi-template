@@ -7,7 +7,7 @@ client = TestClient(app)
 
 
 def test_create_accounts(db, mocker):
-    mocker.patch("app.usecases.create_account_usecase.exec", return_value=None)
+    mocker.patch("app.usecases.create_account_usecases.exec", return_value=None)
     body = {
         "admin_secret": "demo_secret",
             "accounts": [
@@ -24,5 +24,5 @@ def test_create_accounts(db, mocker):
     response = client.post("/v1/accounts", json=body)
 
     parsed_body = schemas.AccountCreateInput.parse_obj(body)
-    usecases.create_account_usecase.exec.assert_called_once_with(db, parsed_body)
+    usecases.create_account_usecases.exec.assert_called_once_with(db, parsed_body)
     assert response.status_code == 201
