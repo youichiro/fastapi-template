@@ -5,14 +5,14 @@ services:
     image: mysql:8.0.32
     environment:
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_USER: cale
-      MYSQL_PASSWORD: password
-      MYSQL_DATABASE: cale_development
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
     volumes:
-      - ./db/sql:/docker-entrypoint-initdb.d
+      - ./db/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
       - db-data:/var/lib/mysql
     ports:
-      - "3306:3306"
+      - "3306:${MYSQL_PORT}"
 
 volumes:
   db-data:

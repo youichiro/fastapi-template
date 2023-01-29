@@ -12,6 +12,7 @@ direnv allow . # load .envrc, then load .env
 ## Setup DB
 ```sh
 docker compose up -d db
+sh db/test/import_schema.sh # dump development db tables and restore into test db
 ```
 
 ## Setup FastAPI
