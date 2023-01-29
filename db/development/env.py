@@ -26,7 +26,14 @@ target_metadata = Base.metadata
 # can be acquired:
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
-db_url_escaped = os.environ["SQLALCHEMY_DATABASE_URL"].replace("%", "%%")
+db_user = os.environ["MYSQL_USER"]
+db_password = os.environ["MYSQL_PASSWORD"]
+db_host = os.environ["MYSQL_HOST"]
+db_port = os.environ["MYSQL_PORT"]
+db_name = os.environ["MYSQL_DATABASE"]
+sqlalchemy_database_url = f"mysql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
+
+db_url_escaped = sqlalchemy_database_url.replace("%", "%%")
 config.set_main_option("sqlalchemy.url", db_url_escaped)
 
 
