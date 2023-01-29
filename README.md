@@ -14,7 +14,7 @@ Inspired by https://blog.p1ass.com/posts/direnv-dotenv/
 ## Setup DB
 ```sh
 docker compose up -d db
-sh db/test/import_schema.sh # dump development db tables and restore into test db
+make setup_test_db
 ```
 
 ## Setup FastAPI
@@ -29,12 +29,11 @@ wip
 
 ## Test
 ```sh
-pytest
+pytest # or make pytest
 ```
 
 ## TODOs
 - fastapiのdocker-compose
-- テスト
 - poetry
 - CI
 
