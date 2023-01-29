@@ -32,6 +32,18 @@ wip
 pytest # or make pytest
 ```
 
+## Dependency management using poetry
+```sh
+# install poetry
+curl -sSL https://install.python-poetry.org | python3 - --version 1.3.2
+
+# add to main group
+porty add xxx
+
+# add to test group
+porty add xxx --group test
+```
+
 ## TODOs
 - fastapiのdocker-compose
 - poetry

@@ -15,6 +15,13 @@ mysqlclient = "^2.1.1"
 alembic = "^1.9.2"
 
 
+[tool.poetry.group.test.dependencies]
+httpx = "^0.23.3"
+pytest = "^7.2.1"
+pytest-mock = "^3.10.0"
+pytest-cov = "^4.0.0"
+pytest-xdist = "^3.1.0"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
