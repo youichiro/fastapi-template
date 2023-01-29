@@ -26,7 +26,7 @@ make setup_test_db
 curl -sSL https://install.python-poetry.org | python3 - --version 1.3.2
 
 # install dependencies
-poetry install
+poetry install --no-root
 
 # run fastapi server
 poetry run uvicorn app.main:app --reload
