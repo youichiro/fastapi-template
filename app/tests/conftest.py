@@ -8,6 +8,7 @@ from app import main, models
 
 
 class MockTestingSession(Session):
+    # refer to: https://www.rhoboro.com/2021/02/27/fastapi-sqlalchemy-dbtest.html
     def commit(self):
         self.flush()
         self.expire_all()
