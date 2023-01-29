@@ -9,10 +9,10 @@ services:
       MYSQL_PASSWORD: password
       MYSQL_DATABASE: cale_development
     volumes:
-      - db_data:/var/lib/mysql
+      - ./db/sql:/docker-entrypoint-initdb.d
+      - db-data:/var/lib/mysql
     ports:
       - "3306:3306"
 
 volumes:
-  db_data:
-
+  db-data:
