@@ -1,9 +1,8 @@
 from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
 
-from . import models, schemas, usecases
-from .database import SessionLocal, engine
-from .usecases import create_account_usecase
+from app import models, schemas, usecases
+from app.database import SessionLocal, engine
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -25,5 +24,5 @@ def get_db():
 })
 def create_accounts(body: schemas.AccountCreateInput, db: Session = Depends(get_db)) -> str:
     """アカウント一括登録API"""
-    create_account_usecase.exec(db=db, body=body)
+    usecases.create_account_usecase.exec(db, body)
     return "created"
