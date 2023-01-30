@@ -79,7 +79,7 @@ poetry run alembic history
 - CI
 - healthcheck
 - db password escape
-
+- read only db
 
 ## Memo
 - アカウントトークン
