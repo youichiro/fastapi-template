@@ -6,6 +6,14 @@ authors = ["youichiro <cinnamon416@gmail.com>"]
 readme = "README.md"
 packages = [{include = "new_cale"}]
 
+
+[tool.flake8]
+max-line-length = 140
+max-complexity = 10
+extend-ignore = ["E203"]
+exclude = "db/"
+
+
 [tool.black]
 line-length = 140
 exclude = '''
@@ -16,10 +24,12 @@ exclude = '''
 )
 '''
 
+
 [tool.isort]
 profile = "black"
 line_length = 140
 skip = ["db"]
+
 
 [tool.poetry.dependencies]
 python = "3.11.1"
