@@ -7,3 +7,6 @@ setup_test_db:
 
 test:
 	poetry run pytest --cov --cov-report term-missing -n 2
+
+clear_pycache:
+	find . | grep -E __pycache__ | xargs rm -rf
