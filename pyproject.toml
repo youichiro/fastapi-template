@@ -6,6 +6,16 @@ authors = ["youichiro <cinnamon416@gmail.com>"]
 readme = "README.md"
 packages = [{include = "new_cale"}]
 
+[tool.black]
+line-length = 140
+exclude = '''
+(
+    db
+    | .mypy_cache
+    | .pytest_cache
+)
+'''
+
 [tool.poetry.dependencies]
 python = "3.11.1"
 fastapi = "^0.89.1"
