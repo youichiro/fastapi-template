@@ -71,18 +71,3 @@ poetry run alembic upgrade head
 # show history
 poetry run alembic history
 ```
-
-## TODOs
-- ASGI
-- nginx
-- CI
-- db password escape
-- read only db
-- connection pool
-
-## Memo
-- アカウントトークン
-  - いらない
-- admin_accountsの認証dependencies
-  - いらない
-- admin accountは手動で作る
