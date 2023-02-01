@@ -3,7 +3,6 @@ from sqlalchemy.orm import Session
 
 from app import models, schemas
 
-
 MAX_ACCOUNT_NUM = 500
 
 

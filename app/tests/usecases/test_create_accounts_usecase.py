@@ -1,7 +1,7 @@
 import pytest
 from fastapi import HTTPException
 
-from app import schemas, models
+from app import models, schemas
 from app.usecases import create_accounts_usecase
 
 

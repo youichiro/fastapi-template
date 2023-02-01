@@ -1,7 +1,7 @@
 import os
 
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, declarative_base
+from sqlalchemy.orm import declarative_base, sessionmaker
 
 db_user = os.environ["MYSQL_USER"]
 db_password = os.environ["MYSQL_PASSWORD"]
