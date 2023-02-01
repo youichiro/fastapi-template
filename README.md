@@ -51,10 +51,13 @@ docker compose exec app poetry run pytest
 ## Dependency management
 ```sh
 # add to main group
-porty add xxx
+poerty add xxx
 
 # add to test group
-porty add --group test xxx
+poerty add --group test xxx
+
+# add to dev group
+poetry add --group dev xxx
 ```
 
 ## Migration
