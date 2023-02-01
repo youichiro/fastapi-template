@@ -76,7 +76,6 @@ poetry run alembic history
 - ASGI
 - nginx
 - CI
-- healthcheck
 - db password escape
 - read only db
 - connection pool

@@ -18,6 +18,11 @@ def get_db():
         db.close()
 
 
+@app.get("/", status_code=200)
+def root() -> str:
+    return "Hello World!"
+
+
 @app.post("/v1/accounts", status_code=201, responses={
     404: {"description": "Not found admin_account"},
     429: {"description": "Too many account length"},
