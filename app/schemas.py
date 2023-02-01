@@ -36,7 +36,7 @@ class AccountCreateInput(BaseModel):
                         "external_user_id": "example_external_user_2",
                         "school_id": 2,
                     },
-                ]
+                ],
             }
         }
 

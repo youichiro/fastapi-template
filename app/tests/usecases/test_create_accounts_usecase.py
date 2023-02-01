@@ -11,7 +11,7 @@ def test_exec(db):
     """
     json_dict = {
         "admin_secret": "demo_secret",
-            "accounts": [
+        "accounts": [
             {
                 "external_user_id": "example_external_user_1",
                 "school_id": 1,
@@ -20,23 +20,23 @@ def test_exec(db):
                 "external_user_id": "example_external_user_2",
                 "school_id": 2,
             },
-        ]
+        ],
     }
     body = schemas.AccountCreateInput.parse_obj(json_dict)
     create_accounts_usecase.exec(db, body)
 
-    db_accounts = db.query(
-        models.Account.admin_account_id, models.Account.external_user_id, models.Account.school_id
-    ).filter(
-        models.Account.external_user_id.in_(['example_external_user_1', 'example_external_user_2'])
-    ).all()
+    db_accounts = (
+        db.query(models.Account.admin_account_id, models.Account.external_user_id, models.Account.school_id)
+        .filter(models.Account.external_user_id.in_(["example_external_user_1", "example_external_user_2"]))
+        .all()
+    )
 
     assert len(db_accounts) == 2
     assert db_accounts[0].admin_account_id == 1
-    assert db_accounts[0].external_user_id == 'example_external_user_1'
+    assert db_accounts[0].external_user_id == "example_external_user_1"
     assert db_accounts[0].school_id == 1
     assert db_accounts[1].admin_account_id == 1
-    assert db_accounts[1].external_user_id == 'example_external_user_2'
+    assert db_accounts[1].external_user_id == "example_external_user_2"
     assert db_accounts[1].school_id == 2
 
 
@@ -46,7 +46,7 @@ def test_exec_no_admin_account(db):
     """
     json_dict = {
         "admin_secret": "not_exist_secret",
-            "accounts": [
+        "accounts": [
             {
                 "external_user_id": "example_external_user_1",
                 "school_id": 1,
@@ -55,7 +55,7 @@ def test_exec_no_admin_account(db):
                 "external_user_id": "example_external_user_2",
                 "school_id": 2,
             },
-        ]
+        ],
     }
     body = schemas.AccountCreateInput.parse_obj(json_dict)
 
@@ -71,7 +71,7 @@ def test_exec_exceed_max_account_num(db, mocker):
     mocker.patch("app.usecases.create_accounts_usecase.MAX_ACCOUNT_NUM", 3)
     json_dict = {
         "admin_secret": "demo_secret",
-            "accounts": [
+        "accounts": [
             {
                 "external_user_id": "example_external_user_1",
                 "school_id": 1,
@@ -88,7 +88,7 @@ def test_exec_exceed_max_account_num(db, mocker):
                 "external_user_id": "example_external_user_4",
                 "school_id": 4,
             },
-        ]
+        ],
     }
     body = schemas.AccountCreateInput.parse_obj(json_dict)
 
@@ -111,7 +111,7 @@ def test_exec_exist_account(db):
 
     json_dict = {
         "admin_secret": "demo_secret",
-            "accounts": [
+        "accounts": [
             {
                 "external_user_id": "example_external_user_1",
                 "school_id": 1,
@@ -120,7 +120,7 @@ def test_exec_exist_account(db):
                 "external_user_id": "example_external_user_2",
                 "school_id": 2,
             },
-        ]
+        ],
     }
     body = schemas.AccountCreateInput.parse_obj(json_dict)
 

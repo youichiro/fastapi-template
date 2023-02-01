@@ -10,7 +10,7 @@ def test_create_accounts(db, mocker):
     mocker.patch("app.usecases.create_accounts_usecase.exec", return_value=None)
     json_dict = {
         "admin_secret": "demo_secret",
-            "accounts": [
+        "accounts": [
             {
                 "external_user_id": "example_external_user_1",
                 "school_id": 1,
@@ -19,7 +19,7 @@ def test_create_accounts(db, mocker):
                 "external_user_id": "example_external_user_2",
                 "school_id": 2,
             },
-        ]
+        ],
     }
     response = client.post("/v1/accounts", json=json_dict)
 

@@ -23,11 +23,15 @@ def root() -> str:
     return "Hello World!"
 
 
-@app.post("/v1/accounts", status_code=201, responses={
-    404: {"description": "Not found admin_account"},
-    429: {"description": "Too many account length"},
-    400: {"description": "Account already exists."},
-})
+@app.post(
+    "/v1/accounts",
+    status_code=201,
+    responses={
+        404: {"description": "Not found admin_account"},
+        429: {"description": "Too many account length"},
+        400: {"description": "Account already exists."},
+    },
+)
 def create_accounts(body: schemas.AccountCreateInput, db: Session = Depends(get_db)) -> str:
     """アカウント一括登録API"""
     create_accounts_usecase.exec(db, body)

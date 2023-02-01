@@ -29,8 +29,4 @@ class Account(Base):
 
     admin_account = relationship("AdminAccount", back_populates="accounts")
 
-    __table_args__ = (
-        UniqueConstraint("admin_account_id", "external_user_id"),
-    )
-
-
+    __table_args__ = (UniqueConstraint("admin_account_id", "external_user_id"),)
