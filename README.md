@@ -45,7 +45,7 @@ docker compose up -d app # open http://localhost:8000/docs
 
 ```sh
 # run tests
-TODO
+docker compose exec app poetry run pytest
 ```
 
 ## Dependency management
@@ -73,7 +73,6 @@ poetry run alembic history
 ```
 
 ## TODOs
-- .dockerignore
 - ASGI
 - nginx
 - CI
