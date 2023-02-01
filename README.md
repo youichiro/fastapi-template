@@ -80,7 +80,7 @@ poetry run alembic history
 - healthcheck
 - db password escape
 - read only db
--connection pool
+- connection pool
 
 ## Memo
 - アカウントトークン
