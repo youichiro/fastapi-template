@@ -62,4 +62,5 @@ jobs:
           MYSQL_ROOT_PASSWORD: password
           MYSQL_USER: cale
           MYSQL_PASSWORD: password
+          MYSQL_DATABASE: cale_development
           MYSQL_TEST_DATABASE: cale_test
