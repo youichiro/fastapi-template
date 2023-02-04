@@ -1,0 +1,18 @@
+name: Setup Python
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.11.1
+    - name: Python Version
+      run: python -V
+    - name: Install Poetry
+      uses: snok/install-poetry@v1
+      with:
+        version: 1.3.2
+    - name: Poetry Version
+      run: poetry --version
