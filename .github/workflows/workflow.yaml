@@ -58,7 +58,7 @@ jobs:
           MYSQL_PASSWORD: password
           MYSQL_DATABASE: cale_development
         volumes:
-          - $GITHUB_WORKSPACE/db/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+          - ${{ github.workspace }}/db/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
     steps:
       - name: Checkout
         uses: actions/checkout@v3
