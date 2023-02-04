@@ -39,6 +39,8 @@ jobs:
       MYSQL_USER: cale
       MYSQL_PASSWORD: password
       MYSQL_DATABASE: cale_development
+      MYSQL_HOST: 127.0.0.1
+      MYSQL_PORT: 3306
       MYSQL_TEST_DATABASE: cale_test
     services:
       mysql:
