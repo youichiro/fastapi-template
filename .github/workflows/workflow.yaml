@@ -1,4 +1,4 @@
-name: lint python
+name: workflow
 on: push
 jobs:
   lint:
@@ -26,3 +26,16 @@ jobs:
         run: poetry run flake8 .
       - name: Run mypy
         run: poetry run mypy .
+
+  actionlint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - name: Chekout
+        uses: actions/checkout@v3
+      - name: Install actionlint
+        shell: bash
+        run: bash <(curl https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
+      - name: Run actionlint
+        shell: bash
+        run: ./actionlint -color
