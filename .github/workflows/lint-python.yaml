@@ -19,7 +19,7 @@ jobs:
       - name: Poetry Version
         run: poetry --version
       - name: Install Dependencies
-        run: poetry install --only main,dev --no-interaction
+        run: poetry install --only main,dev --no-root --no-interaction
       - name: Run black
         run: poetry run black --check .
       - name: Run flake8
