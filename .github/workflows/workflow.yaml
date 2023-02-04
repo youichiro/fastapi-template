@@ -64,9 +64,9 @@ jobs:
         uses: ./.github/actions/setup-python
       - name: Install Dependencies
         run: poetry install --only main,test --no-root --no-interaction
-      - name: Setup Development Database
-        run: make setup_development_db
-      - name: Setup Test Database
-        run: make setup_test_db
+      - name: Setup Database
+        run: |
+          make setup_development_db
+          make setup_test_db
       - name: Run pytest
         run: poetry run pytest --cov --cov-report term-missing -n 2
