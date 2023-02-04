@@ -10,3 +10,6 @@ test:
 
 clear_pycache:
 	find . | grep -E __pycache__ | xargs rm -rf
+
+lint:
+	poetry run isort . && poetry run black . && poetry run flake8
