@@ -797,21 +797,6 @@ files = [
 ]
 
 [[package]]
-name = "pyproject-flake8"
-version = "5.0.4"
-description = "pyproject-flake8 (`pflake8`), a monkey patching wrapper to connect flake8 with pyproject.toml configuration"
-category = "dev"
-optional = false
-python-versions = "*"
-files = [
-    {file = "pyproject-flake8-5.0.4.tar.gz", hash = "sha256:cb69b064b39bb588b5c45a7b16c158f013dddb2ce41cf1896f4b8bc7839bd2ce"},
-    {file = "pyproject_flake8-5.0.4-py2.py3-none-any.whl", hash = "sha256:b41bf2a8f8590220ae067ba4f1c4ab43b4efc65bb76fac18aa982dadea223c08"},
-]
-
-[package.dependencies]
-flake8 = "5.0.4"
-
-[[package]]
 name = "pytest"
 version = "7.2.1"
 description = "pytest: simple powerful testing with Python"
@@ -1278,4 +1263,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "3.11.1"
-content-hash = "60b59928e62a5c03e0e14137074e3b33b978f3c3eb252db8a43a168608f02ad7"
+content-hash = "7b8c712848002a3c62398d400802d7e9e67e6deaf9454f2163371825c98dfd89"
