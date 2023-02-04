@@ -58,3 +58,8 @@ jobs:
         run: poetry install --only main,test --no-root --no-interaction
       - name: Run pytest
         run: poetry run pytest --cov --cov-report term-missing -n 2
+        env:
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_USER: cale
+          MYSQL_PASSWORD: password
+          MYSQL_TEST_DATABASE: cale_test
