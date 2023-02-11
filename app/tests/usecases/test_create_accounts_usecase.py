@@ -1,5 +1,6 @@
 import pytest
 from fastapi import HTTPException
+from sqlalchemy.exc import SQLAlchemyError
 
 from app import models, schemas
 from app.usecases import create_accounts_usecase
@@ -25,11 +26,7 @@ def test_exec(db):
     body = schemas.AccountCreateInput.parse_obj(json_dict)
     create_accounts_usecase.exec(db, body)
 
-    db_accounts = (
-        db.query(models.Account.admin_account_id, models.Account.external_user_id, models.Account.school_id)
-        .filter(models.Account.external_user_id.in_(["example_external_user_1", "example_external_user_2"]))
-        .all()
-    )
+    db_accounts = db.query(models.Account).all()
 
     assert len(db_accounts) == 2
     assert db_accounts[0].admin_account_id == 1
@@ -127,3 +124,24 @@ def test_exec_exist_account(db):
     with pytest.raises(HTTPException) as e:
         create_accounts_usecase.exec(db, body)
     assert e.value.status_code == 400
+
+
+def test_db_error(error_db, mocker):
+    """
+    db.commit()でエラーになった場合、レコードを作成せずに例外を返すこと
+    """
+    json_dict = {
+        "admin_secret": "demo_secret",
+        "accounts": [
+            {
+                "external_user_id": "example_external_user_1",
+                "school_id": 1,
+            },
+        ],
+    }
+    body = schemas.AccountCreateInput.parse_obj(json_dict)
+
+    with pytest.raises(SQLAlchemyError):
+        create_accounts_usecase.exec(error_db, body)
+
+    assert error_db.query(models.Account).count() == 0

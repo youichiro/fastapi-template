@@ -1,4 +1,5 @@
 from fastapi import HTTPException
+from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
 
 from app import models, schemas
@@ -15,6 +16,7 @@ def exec(db: Session, body: schemas.AccountCreateInput) -> None:
     if len(body.accounts) > MAX_ACCOUNT_NUM:
         raise HTTPException(status_code=429, detail=f"Too many account length: {len(body.accounts)}")
 
+    new_accounts = []
     for account in body.accounts:
         db_account = (
             db.query(models.Account)
@@ -33,5 +35,11 @@ def exec(db: Session, body: schemas.AccountCreateInput) -> None:
             external_user_id=account.external_user_id,
             school_id=account.school_id,
         )
-        db.add(new_account)
-    db.commit()
+        new_accounts.append(new_account)
+
+    try:
+        db.add_all(new_accounts)
+        db.commit()
+    except SQLAlchemyError as e:
+        db.rollback()
+        raise e
