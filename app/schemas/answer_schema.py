@@ -6,7 +6,7 @@ from pydantic import BaseModel
 class AnswerBase(BaseModel):
     section_code: str
     is_correct: bool
-    answered_at: datetime | None
+    answered_at: datetime | None = None
 
 
 class AnswerCreateInput(BaseModel):

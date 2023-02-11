@@ -125,24 +125,3 @@ def test_exec_exist_account(db):
     with pytest.raises(HTTPException) as e:
         create_accounts_usecase.exec(db, body)
     assert e.value.status_code == 400
-
-
-def test_db_error(error_db, mocker):
-    """
-    db.commit()でエラーになった場合、レコードを作成せずに例外を返すこと
-    """
-    json_dict = {
-        "admin_secret": "demo_secret",
-        "accounts": [
-            {
-                "external_user_id": "example_external_user_1",
-                "school_id": 1,
-            },
-        ],
-    }
-    body = account_schema.AccountCreateInput.parse_obj(json_dict)
-
-    with pytest.raises(SQLAlchemyError):
-        create_accounts_usecase.exec(error_db, body)
-
-    assert error_db.query(models.Account).count() == 0

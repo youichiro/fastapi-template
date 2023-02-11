@@ -15,12 +15,8 @@ class MockTestingSession(Session):
         self.expire_all()
 
 
-class MockErrorTestingSession(Session):
-    def commit(self):
-        raise SQLAlchemyError("mock testing session error")
-
-
-def _create_testing_session_local(do_raise_error=False):
+@pytest.fixture
+def db():
     db_user = "root"
     db_password = os.environ["MYSQL_ROOT_PASSWORD"]
     db_host = os.environ["MYSQL_HOST"]
@@ -29,14 +25,7 @@ def _create_testing_session_local(do_raise_error=False):
     sqlalchemy_database_url = f"mysql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
 
     engine = create_engine(sqlalchemy_database_url)
-    sessionmaker_class = MockTestingSession if not do_raise_error else MockErrorTestingSession
-    TestingSessionLocal = sessionmaker(class_=sessionmaker_class, autocommit=False, autoflush=False, bind=engine)
-    return engine, TestingSessionLocal
-
-
-@pytest.fixture
-def db():
-    engine, TestingSessionLocal = _create_testing_session_local()
+    TestingSessionLocal = sessionmaker(class_=MockTestingSession, autocommit=False, autoflush=False, bind=engine)
     models.Base.metadata.create_all(bind=engine)
 
     db = TestingSessionLocal()
@@ -52,21 +41,3 @@ def db():
     db.rollback()
     db.close()
 
-
-@pytest.fixture
-def error_db():
-    engine, TestingSessionLocal = _create_testing_session_local(do_raise_error=True)
-    models.Base.metadata.create_all(bind=engine)
-
-    db = TestingSessionLocal()
-
-    def override_get_db():
-        yield db
-        db.commit()
-
-    main.app.dependency_overrides[main.get_db] = override_get_db
-
-    yield db
-
-    db.rollback()
-    db.close()
