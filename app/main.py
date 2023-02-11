@@ -1,8 +1,9 @@
 from fastapi import Depends, FastAPI
 from sqlalchemy.orm import Session
 
-from app import models, schemas
+from app import models
 from app.database import SessionLocal, engine
+from app.schemas import account_schema
 from app.usecases import create_accounts_usecase
 
 models.Base.metadata.create_all(bind=engine)
@@ -32,7 +33,7 @@ def root() -> str:
         400: {"description": "Account already exists."},
     },
 )
-def create_accounts(body: schemas.AccountCreateInput, db: Session = Depends(get_db)) -> str:
+def create_accounts(body: account_schema.AccountCreateInput, db: Session = Depends(get_db)) -> str:
     """アカウント一括登録API"""
     create_accounts_usecase.exec(db, body)
     return "created"

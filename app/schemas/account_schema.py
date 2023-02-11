@@ -1,17 +1,4 @@
-from datetime import datetime
-
 from pydantic import BaseModel
-
-
-class AdminAccount(BaseModel):
-    id: int
-    admin_name: str
-    admin_secret: str
-    created_at: datetime
-    updated_at: datetime
-
-    class Config:
-        orm_mode = True
 
 
 class AccountBase(BaseModel):
@@ -39,14 +26,3 @@ class AccountCreateInput(BaseModel):
                 ],
             }
         }
-
-
-class Account(AccountBase):
-    id: int
-    admin_account_id: int
-    admin_account: AdminAccount
-    created_at: datetime
-    updated_at: datetime
-
-    class Config:
-        orm_mode = True

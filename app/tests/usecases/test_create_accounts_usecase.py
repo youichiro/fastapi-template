@@ -2,7 +2,8 @@ import pytest
 from fastapi import HTTPException
 from sqlalchemy.exc import SQLAlchemyError
 
-from app import models, schemas
+from app import models
+from app.schemas import account_schema
 from app.usecases import create_accounts_usecase
 
 
@@ -23,7 +24,7 @@ def test_exec(db):
             },
         ],
     }
-    body = schemas.AccountCreateInput.parse_obj(json_dict)
+    body = account_schema.AccountCreateInput.parse_obj(json_dict)
     create_accounts_usecase.exec(db, body)
 
     db_accounts = db.query(models.Account).all()
@@ -54,7 +55,7 @@ def test_exec_no_admin_account(db):
             },
         ],
     }
-    body = schemas.AccountCreateInput.parse_obj(json_dict)
+    body = account_schema.AccountCreateInput.parse_obj(json_dict)
 
     with pytest.raises(HTTPException) as e:
         create_accounts_usecase.exec(db, body)
@@ -87,7 +88,7 @@ def test_exec_exceed_max_account_num(db, mocker):
             },
         ],
     }
-    body = schemas.AccountCreateInput.parse_obj(json_dict)
+    body = account_schema.AccountCreateInput.parse_obj(json_dict)
 
     with pytest.raises(HTTPException) as e:
         create_accounts_usecase.exec(db, body)
@@ -119,7 +120,7 @@ def test_exec_exist_account(db):
             },
         ],
     }
-    body = schemas.AccountCreateInput.parse_obj(json_dict)
+    body = account_schema.AccountCreateInput.parse_obj(json_dict)
 
     with pytest.raises(HTTPException) as e:
         create_accounts_usecase.exec(db, body)
@@ -139,7 +140,7 @@ def test_db_error(error_db, mocker):
             },
         ],
     }
-    body = schemas.AccountCreateInput.parse_obj(json_dict)
+    body = account_schema.AccountCreateInput.parse_obj(json_dict)
 
     with pytest.raises(SQLAlchemyError):
         create_accounts_usecase.exec(error_db, body)
