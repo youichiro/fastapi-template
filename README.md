@@ -1,4 +1,4 @@
-# New CALE
+# fastapi-template
 ## Versions
 - python: 3.11.1
 - fastapi: 0.89.1
@@ -29,7 +29,7 @@ curl -sSL https://install.python-poetry.org | python3 - --version 1.3.2
 poetry install --no-root
 
 # run fastapi server
-poetry run uvicorn app.main:app --reload # open http://localhost:8000/docs
+poetry run uvicorn app.main:app --reload
 ```
 
 ```sh
@@ -40,7 +40,7 @@ poetry run pytest # or make pytest
 ### on docker-compose
 ```sh
 docker compose build app
-docker compose up -d app # open http://localhost:8000/docs
+docker compose up -d app
 ```
 
 ```sh
@@ -74,3 +74,18 @@ poetry run alembic upgrade head
 # show history
 poetry run alembic history
 ```
+
+
+## GitHub Actions
+- [actionlint](https://github.com/rhysd/actionlint)
+  - check for GitHub Actions workflow files
+- [isort](https://pycqa.github.io/isort/)
+  - check python imports order
+- [black](https://github.com/psf/black)
+  - check python code format
+- [flake8](https://flake8.pycqa.org/en/latest/)
+  - check python code style
+- [mypy](https://mypy.readthedocs.io/en/stable/index.html)
+  - check python static types
+- [pytest](https://docs.pytest.org/en/7.2.x/)
+  - check python tests
