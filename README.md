@@ -12,38 +12,37 @@ direnv allow . # load .envrc, then load .env
 
 Inspired by https://blog.p1ass.com/posts/direnv-dotenv/
 
-## Setup DB
-```sh
-docker compose up -d db
-make setup_development_db
-make setup_test_db
-```
 
-## Setup FastAPI
-### on local
+## Install dependencies
 ```sh
 # install poetry
 curl -sSL https://install.python-poetry.org | python3 - --version 1.3.2
 
 # install dependencies
 poetry install --no-root
-
-# run fastapi server
-poetry run uvicorn app.main:app --reload
 ```
 
+## Setup databases
 ```sh
+docker compose up -d db
+make setup_development_db
+make setup_test_db
+```
+
+## Run on local
+```sh
+# run fastapi server
+poetry run uvicorn app.main:app --reload
+
 # run tests
 poetry run pytest # or make pytest
 ```
 
-### on docker-compose
+## Run on docker compose
 ```sh
-docker compose build app
+# run fastapi server
 docker compose up -d app
-```
 
-```sh
 # run tests
 docker compose exec app poetry run pytest
 ```
@@ -89,3 +88,15 @@ poetry run alembic history
   - check python static types
 - [pytest](https://docs.pytest.org/en/7.2.x/)
   - check python tests
+
+
+## TODO
+- ASGI configuration
+- Nginx service
+- read-only database
+- database connection pooling
+- [Locust](https://docs.locust.io/en/stable/) for performance testing
+- logging
+- views
+- authentication
+- admin service
