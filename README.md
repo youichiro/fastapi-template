@@ -35,7 +35,7 @@ make setup_test_db
 poetry run uvicorn app.main:app --reload
 
 # run tests
-poetry run pytest # or make pytest
+poetry run pytest # or make test
 ```
 
 ## Run on docker compose
