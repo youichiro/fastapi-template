@@ -1,10 +1,10 @@
 [tool.poetry]
-name = "new-cale"
+name = "fastapi-template"
 version = "0.1.0"
 description = ""
 authors = ["youichiro <cinnamon416@gmail.com>"]
 readme = "README.md"
-packages = [{include = "new_cale"}]
+packages = [{include = "fastapi-template"}]
 
 
 [tool.flake8]

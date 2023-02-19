@@ -14,7 +14,7 @@ services:
       MYSQL_PORT: ${MYSQL_PORT}
       MYSQL_TEST_DATABASE: ${MYSQL_TEST_DATABASE}
     volumes:
-      - ./app:/opt/new_cale/app/
+      - ./app:/opt/fastapi_template/app/
     ports:
       - "8000:8000"
     depends_on:

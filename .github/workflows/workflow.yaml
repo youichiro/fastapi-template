@@ -36,12 +36,12 @@ jobs:
     needs: actionlint
     env:
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_USER: cale
+      MYSQL_USER: fastapi_template
       MYSQL_PASSWORD: password
-      MYSQL_DATABASE: cale_test
+      MYSQL_DATABASE: fastapi_template_test
       MYSQL_HOST: 127.0.0.1
       MYSQL_PORT: 3306
-      MYSQL_TEST_DATABASE: cale_test
+      MYSQL_TEST_DATABASE: fastapi_template_test
     services:
       mysql:
         image: mysql:8.0.22
@@ -54,9 +54,9 @@ jobs:
           --health-retries=3
         env:
           MYSQL_ROOT_PASSWORD: password
-          MYSQL_USER: cale
+          MYSQL_USER: fastapi_template
           MYSQL_PASSWORD: password
-          MYSQL_DATABASE: cale_test
+          MYSQL_DATABASE: fastapi_template_test
     steps:
       - name: Checkout
         uses: actions/checkout@v3

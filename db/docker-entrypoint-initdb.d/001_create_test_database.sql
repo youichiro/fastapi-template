@@ -1,1 +1,1 @@
-CREATE DATABASE IF NOT EXISTS cale_test;
+CREATE DATABASE IF NOT EXISTS fastapi_template_test;
