@@ -7,7 +7,7 @@ from app.recommendations.schemas import answer_schema
 
 
 def exec(db: Session, account_id: int, body: answer_schema.AnswerCreateInput):
-    if db.query(models.Account).filter(models.Account.id == account_id).get_or_none() is None:
+    if db.query(models.Account).filter(models.Account.id == account_id).first() is None:
         raise HTTPException(status_code=404, detail=f"Not found account id: {account_id}.")
 
     new_answers = []
