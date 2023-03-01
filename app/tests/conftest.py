@@ -2,10 +2,10 @@ import os
 
 import pytest
 from sqlalchemy import create_engine
-from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session, sessionmaker
 
 from app import main, models
+from app.dependencies import get_db
 
 
 class MockTestingSession(Session):
@@ -34,10 +34,9 @@ def db():
         yield db
         db.commit()
 
-    main.app.dependency_overrides[main.get_db] = override_get_db
+    main.app.dependency_overrides[get_db] = override_get_db
 
     yield db
 
     db.rollback()
     db.close()
-

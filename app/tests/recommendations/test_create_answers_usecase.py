@@ -1,10 +1,9 @@
 import pytest
 from fastapi import HTTPException
-from sqlalchemy.exc import SQLAlchemyError
 
 from app import models
-from app.schemas import answer_schema
-from app.usecases import create_answers_usecase
+from app.recommendations.schemas import answer_schema
+from app.recommendations.usecases import create_answers_usecase
 
 
 def _create_account(db):
@@ -26,7 +25,7 @@ def test_exec(db):
     account = _create_account(db)
     json_dict = {
         "answers": [
-             {
+            {
                 "section_code": "section_code_111",
                 "is_correct": False,
             },
@@ -43,9 +42,9 @@ def test_exec(db):
 
     assert len(db_answers) == 2
     assert db_answers[0].section_code == "section_code_111"
-    assert db_answers[0].is_correct == False
+    assert db_answers[0].is_correct is False
     assert db_answers[1].section_code == "section_code_222"
-    assert db_answers[1].is_correct == True
+    assert db_answers[1].is_correct is True
 
 
 def test_exec_no_account(db):
@@ -54,7 +53,7 @@ def test_exec_no_account(db):
     """
     json_dict = {
         "answers": [
-             {
+            {
                 "section_code": "section_code_111",
                 "is_correct": False,
             },

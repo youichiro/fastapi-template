@@ -1,12 +1,13 @@
 from fastapi import HTTPException
+from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
 
 from app import models
-from app.schemas import answer_schema
+from app.recommendations.schemas import answer_schema
 
 
 def exec(db: Session, account_id: int, body: answer_schema.AnswerCreateInput):
-    if not db.query(models.Account).filter(models.Account.id == account_id).first():
+    if db.query(models.Account).filter(models.Account.id == account_id).get_or_none() is None:
         raise HTTPException(status_code=404, detail=f"Not found account id: {account_id}.")
 
     new_answers = []

@@ -1,10 +1,9 @@
 import pytest
 from fastapi import HTTPException
-from sqlalchemy.exc import SQLAlchemyError
 
 from app import models
-from app.schemas import account_schema
-from app.usecases import create_accounts_usecase
+from app.accounts.schemas import account_schema
+from app.accounts.usecases import create_accounts_usecase
 
 
 def test_exec(db):
@@ -66,7 +65,7 @@ def test_exec_exceed_max_account_num(db, mocker):
     """
     最大アカウント数を超過する場合、429を返すこと
     """
-    mocker.patch("app.usecases.create_accounts_usecase.MAX_ACCOUNT_NUM", 3)
+    mocker.patch("app.accounts.usecases.create_accounts_usecase.MAX_ACCOUNT_NUM", 3)
     json_dict = {
         "admin_secret": "demo_secret",
         "accounts": [

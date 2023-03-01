@@ -3,7 +3,7 @@ from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
 
 from app import models
-from app.schemas import account_schema
+from app.accounts.schemas import account_schema
 
 MAX_ACCOUNT_NUM = 500
 
