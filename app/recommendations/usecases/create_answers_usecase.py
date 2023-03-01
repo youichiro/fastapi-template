@@ -20,9 +20,5 @@ def exec(db: Session, account_id: int, body: answer_schema.AnswerCreateInput):
         )
         new_answers.append(new_answer)
 
-    try:
-        db.add_all(new_answers)
-        db.commit()
-    except SQLAlchemyError as e:
-        db.rollback()
-        raise e
+    db.add_all(new_answers)
+    db.commit()

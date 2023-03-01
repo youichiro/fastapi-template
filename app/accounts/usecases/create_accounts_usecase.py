@@ -38,9 +38,5 @@ def exec(db: Session, body: account_schema.AccountCreateInput) -> None:
         )
         new_accounts.append(new_account)
 
-    try:
-        db.add_all(new_accounts)
-        db.commit()
-    except SQLAlchemyError as e:
-        db.rollback()
-        raise e
+    db.add_all(new_accounts)
+    db.commit()
