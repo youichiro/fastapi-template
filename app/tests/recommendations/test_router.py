@@ -37,7 +37,9 @@ def test_create_answers(db, mocker):
 
 
 def test_create_answers_with_404(db, mocker):
-    mock = mocker.patch("app.recommendations.usecases.create_answers_usecase.exec", side_effect=HTTPException(status_code=404, detail=f"error_detail"))
+    mock = mocker.patch(
+        "app.recommendations.usecases.create_answers_usecase.exec", side_effect=HTTPException(status_code=404, detail="error_detail")
+    )
     response = client.post("/v1/accounts/1/answers", json=json_dict)
 
     body = answer_schema.AnswerCreateInput.parse_obj(json_dict)
@@ -46,7 +48,7 @@ def test_create_answers_with_404(db, mocker):
 
 
 def test_create_answers_with_SQLAlchemyError(db, mocker):
-    mock = mocker.patch("app.recommendations.usecases.create_answers_usecase.exec", side_effect=SQLAlchemyError())
+    mocker.patch("app.recommendations.usecases.create_answers_usecase.exec", side_effect=SQLAlchemyError())
 
     with pytest.raises(SQLAlchemyError) as e:
         client.post("/v1/accounts/1/answers", json=json_dict)
