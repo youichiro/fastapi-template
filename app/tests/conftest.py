@@ -12,6 +12,8 @@ class MockTestingSession(Session):
     # refer to: https://www.rhoboro.com/2021/02/27/fastapi-sqlalchemy-dbtest.html
     def commit(self):
         self.flush()
+
+    def rollback(self):
         self.expire_all()
 
 
@@ -31,8 +33,11 @@ def db():
     db = TestingSessionLocal()
 
     def override_get_db():
-        yield db
-        db.commit()
+        try:
+            yield db
+        except Exception as e:
+            db.rollback()
+            raise e
 
     main.app.dependency_overrides[get_db] = override_get_db
 
