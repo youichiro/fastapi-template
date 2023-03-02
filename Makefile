@@ -1,5 +1,5 @@
 test:
-	poetry run pytest --cov --cov-report term-missing -n 2
+	poetry run pytest -s -vv --cov --cov-report term-missing -n 2
 
 lint:
 	poetry run isort .
