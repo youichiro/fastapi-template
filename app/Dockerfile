@@ -3,7 +3,7 @@ FROM python:3.11.1-buster
 ENV POETRY_HOME /etc/poetry
 ENV PATH $POETRY_HOME/bin:$PATH
 
-RUN curl -sSL https://install.python-poetry.org | python3 - --version 1.3.2
+RUN curl -sSL https://install.python-poetry.org | python3 - --version 1.4.0
 
 RUN useradd -m -u 1000 app
 USER 1000

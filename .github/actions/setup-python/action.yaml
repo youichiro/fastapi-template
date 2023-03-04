@@ -14,7 +14,7 @@ runs:
     - name: Install Poetry
       uses: snok/install-poetry@v1
       with:
-        version: 1.3.2
+        version: 1.4.0
     - name: Poetry Version
       shell: bash
       run: poetry --version
